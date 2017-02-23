@@ -26,60 +26,62 @@
         <div id="audio-container"></div>
         <script src="js/recorder.js"></script>
         <script>
-            var start = document.querySelector('#start');
-            var stop = document.querySelector('#stop');
-            var container = document.querySelector('#audio-container');
-            var recorder = new Recorder({
-                sampleRate: 44100, //采样频率，默认为44100Hz(标准MP3采样率)
-                bitRate: 128, //比特率，默认为128kbps(标准MP3质量)
-                success: function(){ //成功回调函数
-                    start.disabled = false;
-                },
-                error: function(msg){ //失败回调函数
-                    alert(msg);
-                },
-                fix: function(msg){ //不支持H5录音回调函数
-                    alert(msg);
-                }
-            });
-
-            //开始录音
-            //recorder.start();
-
-            //停止录音
-            //recorder.stop();
-
-            //获取MP3编码的Blob格式音频文件
-            //recorder.getBlob(function(blob){ 获取成功回调函数，blob即为音频文件
-            //    ...
-            //},function(msg){ 获取失败回调函数，msg为错误信息
-            //    ...
-            //});
-
-            //getUserMedia() no longer works on insecure origins. To use this feature, you should consider switching your application to a secure origin, such as HTTPS.
-
-            start.addEventListener('click',function(){
-                this.disabled = true;
-                stop.disabled = false;
-                var audio = document.querySelectorAll('audio');
-                for(var i = 0; i < audio.length; i++){
-                    if(!audio[i].paused){
-                        audio[i].pause();
+            window.onload = function(){
+                var start = document.querySelector('#start');
+                var stop = document.querySelector('#stop');
+                var container = document.querySelector('#audio-container');
+                var recorder = new Recorder({
+                    sampleRate: 44100, //采样频率，默认为44100Hz(标准MP3采样率)
+                    bitRate: 128, //比特率，默认为128kbps(标准MP3质量)
+                    success: function(){ //成功回调函数
+                        start.disabled = false;
+                    },
+                    error: function(msg){ //失败回调函数
+                        alert(msg);
+                    },
+                    fix: function(msg){ //不支持H5录音回调函数
+                        alert(msg);
                     }
-                }
-                recorder.start();
-            });
-            stop.addEventListener('click',function(){
-                this.disabled = true;
-                start.disabled = false;
-                recorder.stop();
-                recorder.getBlob(function(blob){
-                    var audio = document.createElement('audio');
-                    audio.src = URL.createObjectURL(blob);
-                    audio.controls = true;
-                    container.appendChild(audio);
                 });
-            });
+
+                //开始录音
+                //recorder.start();
+
+                //停止录音
+                //recorder.stop();
+
+                //获取MP3编码的Blob格式音频文件
+                //recorder.getBlob(function(blob){ 获取成功回调函数，blob即为音频文件
+                //    ...
+                //},function(msg){ 获取失败回调函数，msg为错误信息
+                //    ...
+                //});
+
+                //getUserMedia() no longer works on insecure origins. To use this feature, you should consider switching your application to a secure origin, such as HTTPS.
+
+                start.addEventListener('click',function(){
+                    this.disabled = true;
+                    stop.disabled = false;
+                    var audio = document.querySelectorAll('audio');
+                    for(var i = 0; i < audio.length; i++){
+                        if(!audio[i].paused){
+                            audio[i].pause();
+                        }
+                    }
+                    recorder.start();
+                });
+                stop.addEventListener('click',function(){
+                    this.disabled = true;
+                    start.disabled = false;
+                    recorder.stop();
+                    recorder.getBlob(function(blob){
+                        var audio = document.createElement('audio');
+                        audio.src = URL.createObjectURL(blob);
+                        audio.controls = true;
+                        container.appendChild(audio);
+                    });
+                });
+            };
         </script>
     </body>
 </html>
