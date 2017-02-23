@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>recorder.js</title>
+        <style>
+            audio { display: block; margin-bottom: 10px; }
+            #audio-container { padding: 20px 0; }
+            .ui-btn { display: inline-block; padding: 5px 20px; font-size: 14px; line-height: 1.428571429; box-sizing:content-box; text-align: center; border: 1px solid #e8e8e8; border-radius: 3px; color: #555; background-color: #fff; border-color: #e8e8e8; white-space: nowrap; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+            .ui-btn:hover, .ui-btn.hover { color: #333; text-decoration: none; background-color: #f8f8f8; border:1px solid #ddd; }
+            .ui-btn:focus, .ui-btn:active { color: #333; outline: 0; }
+            .ui-btn.disabled, .ui-btn.disabled:hover, .ui-btn.disabled:active, .ui-btn[disabled], .ui-btn[disabled]:hover, .ui-state-disabled .ui-btn { cursor: not-allowed; background-color: #eee; border-color: #eee; color: #aaa; }
+            .ui-btn-primary { color: #fff;  background-color: #39b54a;  border-color: #39b54a; }
+            .ui-btn-primary:hover, .ui-btn-primary.hover { color: #fff; background-color: #16a329; border-color: #16a329; }
+            .ui-btn-primary:focus, .ui-btn-primary:active { color: #fff; }
+            .ui-btn-primary.disabled:focus{ color: #aaa; }
+        </style>
+    </head>
+    <body>
+        <h1>recorder.js</h1>
+        <h2>HTML5录音解决方案</h2>
+        <p>由于Chrome47以上以及QQ浏览器需要HTTPS的支持，所以烦请更换至360、FF、Edge进行体验，或下载项目至本地通过localhost访问。</p>
+        <p>另：IE和Safari全版本不支持录音功能</p>
+        <button id="start" class="ui-btn ui-btn-primary" disabled>录音</button>
+        <button id="stop" class="ui-btn ui-btn-primary" disabled>停止</button>
+        <div id="audio-container"></div>
+        <script src="js/recorder.js"></script>
+        <script>
+            var start = document.querySelector('#start');
+            var stop = document.querySelector('#stop');
+            var container = document.querySelector('#audio-container');
+            var recorder = new Recorder({
+                sampleRate: 44100, //采样频率，默认为44100Hz(标准MP3采样率)
+                bitRate: 128, //比特率，默认为128kbps(标准MP3质量)
+                success: function(){ //成功回调函数
+                    start.disabled = false;
+                },
+                error: function(msg){ //失败回调函数
+                    alert(msg);
+                },
+                fix: function(msg){ //不支持H5录音回调函数
+                    alert(msg);
+                }
+            });
+
+            //开始录音
+            //recorder.start();
+
+            //停止录音
+            //recorder.stop();
+
+            //获取MP3编码的Blob格式音频文件
+            //recorder.getBlob(function(blob){ 获取成功回调函数，blob即为音频文件
+            //    ...
+            //},function(msg){ 获取失败回调函数，msg为错误信息
+            //    ...
+            //});
+
+            //getUserMedia() no longer works on insecure origins. To use this feature, you should consider switching your application to a secure origin, such as HTTPS.
+
+            start.addEventListener('click',function(){
+                this.disabled = true;
+                stop.disabled = false;
+                var audio = document.querySelectorAll('audio');
+                for(var i = 0; i < audio.length; i++){
+                    if(!audio[i].paused){
+                        audio[i].pause();
+                    }
+                }
+                recorder.start();
+            });
+            stop.addEventListener('click',function(){
+                this.disabled = true;
+                start.disabled = false;
+                recorder.stop();
+                recorder.getBlob(function(blob){
+                    var audio = document.createElement('audio');
+                    audio.src = URL.createObjectURL(blob);
+                    audio.controls = true;
+                    container.appendChild(audio);
+                });
+            });
+        </script>
+    </body>
+</html>
