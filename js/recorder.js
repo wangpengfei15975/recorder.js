@@ -106,8 +106,6 @@
                 var msg;
                 switch(error.code || error.name){
                     case 'PermissionDeniedError':
-                        msg = '需要安全的网络环境';
-                        break;
                     case 'PERMISSION_DENIED':
                     case 'NotAllowedError':
                         msg = '用户拒绝访问麦克风';
