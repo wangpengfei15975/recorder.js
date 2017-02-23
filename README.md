@@ -27,9 +27,9 @@ recorder.start();
 //停止录音
 recorder.stop();
 //获取MP3编码的Blob格式音频文件
-recorder.getBlob(function(blob){ 获取成功回调函数，blob即为音频文件
-//    ...
-},function(msg){ 获取失败回调函数，msg为错误信息
-//    ...
+recorder.getBlob(function(blob){ //获取成功回调函数，blob即为音频文件
+//  ...
+},function(msg){ //获取失败回调函数，msg为错误信息
+//  ...
 });
 ```
