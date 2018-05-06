@@ -20,8 +20,6 @@
     };
 
     var encode = function(arrayBuffer) {
-        //samplesMono = convertBuffer(arrayBuffer);
-        console.log(arrayBuffer.length);
         wavEncoder.encode([arrayBuffer]);
     };
 
