@@ -4,12 +4,12 @@
 完全依赖H5原生API  
 所涉及的API：`WebRTC、AudioContext、Worker、Video/Audio API、Blob、URL`  
 ## 兼容性
-安卓设备: Chrome(>66), Opera(>37), Firfox(>57), UCBrowser(>11.8)
-iOS设备: (>iOS11) 使用WKWebView的所有浏览器
-桌面设备: Chrome(>53), Firfox(>42), Edge(>12), Safari(>11.1)
-注:不兼容IE. 
-其中 Chrome47 以上以及 QQ浏览器 和 WKWebView 强制要求HTTPS的支持  
-请尝试使用Firfox、Edge、360等浏览器进行体验，或将项目下载到本地通过localhost的方式  
+安卓设备: `Chrome(>66)`, `Opera(>37)`, `Firfox(>57)`, `UCBrowser(>11.8)`  
+iOS设备: `(>iOS11) 使用WKWebView的所有浏览器`  
+桌面设备: `Chrome(>53)`, `Firfox(>42)`, `Edge(>12)`, `Safari(>11.1)`  
+注:不兼容IE.   
+其中 Chrome47 以上以及 QQ浏览器 和 WKWebView 强制要求HTTPS的支持  
+请尝试使用Firfox、Edge、360等浏览器进行体验，或将项目下载到本地通过localhost的方式  
 
 ## 使用方式
 ```js
