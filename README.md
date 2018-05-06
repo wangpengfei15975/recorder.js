@@ -5,7 +5,7 @@
 所涉及的API：`WebRTC、AudioContext、Worker、Video/Audio API、Blob、URL`  
 ## 兼容性
 安卓设备: `Chrome(>66)`, `Opera(>37)`, `Firfox(>57)`, `UCBrowser(>11.8)`  
-iOS设备: `Safari(>iOS11)`  
+iOS设备: `Safari(>iOS11)`  
 桌面设备: `Chrome(>53)`, `Firfox(>42)`, `Edge(>12)`, `Safari(>11.1)`  
 注:不兼容IE.   
 其中 Chrome47 以上以及 QQ浏览器 和 Safari(>iOS11) 强制要求HTTPS的支持  
