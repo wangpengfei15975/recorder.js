@@ -32,14 +32,17 @@
     //构造函数
     var Recorder = function(config) {
 
+		
+	
         var _this = this;
         config = config || {}; //初始化配置对象
         config.sampleRate = config.sampleRate || 44100; //采样频率，默认为44100Hz(标准MP3采样率)
         config.bitRate = config.bitRate || 128; //比特率，默认为128kbps(标准MP3质量)
-        config.fmt = config.fmt || supportFmt[0]; //格式，支持mp3和wav 默认为 mp3
-
-        Util.init();
-
+        //config.fmt = config.fmt || supportFmt[0]; //格式，支持mp3和wav 默认为 mp3
+		config.fmt = supportFmt.indexOf(config.fmt)==-1?supportFmt[0]:config.fmt; //格式，支持mp3和wav 默认为 mp3
+	
+		Util.init();
+	
         if (navigator.getUserMedia) {
             navigator.getUserMedia({
                     audio: true //配置对象
